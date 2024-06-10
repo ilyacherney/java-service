@@ -1,13 +1,9 @@
 package ru.nobilis.icherney.kafkatest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
-import ru.nobilis.icherney.kafkatest.model.Script;
-import ru.nobilis.icherney.kafkatest.repo.ScriptRepo;
+import org.python.util.PythonInterpreter;
 
 @SpringBootApplication
 public class KafkaTestApplication {
@@ -19,6 +15,10 @@ public class KafkaTestApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KafkaTestApplication.class, args);
+
+            PythonInterpreter pyInterp = new PythonInterpreter();
+//            pyInterp.exec("print('Hello Python World!')");
+
     }
 
 //    @Bean

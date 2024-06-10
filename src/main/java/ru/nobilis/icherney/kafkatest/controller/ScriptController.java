@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.nobilis.icherney.kafkatest.model.Script;
 import ru.nobilis.icherney.kafkatest.service.ScriptService;
 
-import java.util.List;
-
 @RestController
 public class ScriptController {
 
@@ -16,10 +14,12 @@ public class ScriptController {
     public ScriptController(ScriptService scriptService) {this.scriptService = scriptService;}
 
     @GetMapping("/scripts")
-    public List<Script> getScripts() {return scriptService.get();}
+    public Script getScript(@RequestParam int id) {return scriptService.getById(id);}
 
     @PostMapping("/scripts")
-    public void postScript(@RequestParam int id, String body) {scriptService.post(new Script(id, body));}
+    public void saveScript(@RequestBody Script script) {
+        scriptService.save(script);
+    } //requestparam->requestbody
 
     @PutMapping("/scripts")
     public void updateScript(@RequestParam int id, String body) {scriptService.update(id, body);}

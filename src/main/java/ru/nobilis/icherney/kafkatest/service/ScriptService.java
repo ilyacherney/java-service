@@ -3,37 +3,42 @@ package ru.nobilis.icherney.kafkatest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nobilis.icherney.kafkatest.model.Script;
-import ru.nobilis.icherney.kafkatest.repo.ScriptRepo;
+import ru.nobilis.icherney.kafkatest.repository.ScriptRepository;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ScriptService  {
 
-    private final ScriptRepo scriptRepo;
+    private final ScriptRepository scriptRepository;
 
     @Autowired
-    public ScriptService(ScriptRepo scriptRepo) {
-        this.scriptRepo = scriptRepo;
+    public ScriptService(ScriptRepository scriptRepository) {
+        this.scriptRepository = scriptRepository;
     }
 
     public List<Script> get() {
-        return scriptRepo.findAll();
+        return scriptRepository.findAll();
     }
 
-    public void post(Script script) {
-        scriptRepo.save(script);
+    public Script getById(int id) {
+        Optional<Script> script = scriptRepository.findById(id);
+
+        //add exception
+        return script.orElse(null);
+    }
+
+    public void save(Script script) {
+        scriptRepository.save(script);
     }
 
     public void update(int id, String body) {
-        Optional<Script> script = scriptRepo.findById(id);
-        if (script.isPresent()) {
-            script.get().setBody(body);
-        }
+        Optional<Script> script = scriptRepository.findById(id);
+        script.ifPresent(value -> value.setBody(body));
     }
 
     public void delete(int id) {
-        Optional<Script> script = scriptRepo.findById(id);
-        scriptRepo.delete(script.get());
+        Optional<Script> script = scriptRepository.findById(id);
+        scriptRepository.delete(script.get());
     }
 }
