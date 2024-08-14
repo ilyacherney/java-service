@@ -14,7 +14,7 @@
     <name>kafka-test</name>
     <description>kafka-test</description>
     <properties>
-        <java.version>22</java.version>
+        <java.version>20</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -46,13 +46,12 @@
             <artifactId>postgresql</artifactId>
             <version>42.7.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.graalvm.python/python-language -->
+        <!-- https://mvnrepository.com/artifact/org.python/jython-standalone -->
         <dependency>
-            <groupId>org.graalvm.python</groupId>
-            <artifactId>python-language</artifactId>
-            <version>24.0.1</version>
+            <groupId>org.python</groupId>
+            <artifactId>jython-standalone</artifactId>
+            <version>2.7.2</version>
         </dependency>
-
     </dependencies>
 
     <build>

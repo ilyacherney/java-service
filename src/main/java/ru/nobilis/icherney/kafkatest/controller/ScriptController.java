@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.nobilis.icherney.kafkatest.model.Script;
 import ru.nobilis.icherney.kafkatest.service.ScriptService;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/api/script")
 public class ScriptController {
 
     private ScriptService scriptService;
@@ -13,17 +16,20 @@ public class ScriptController {
     @Autowired
     public ScriptController(ScriptService scriptService) {this.scriptService = scriptService;}
 
-    @GetMapping("/scripts")
+    @GetMapping("/{id}")
     public Script getScript(@RequestParam int id) {return scriptService.getById(id);}
 
-    @PostMapping("/scripts")
+    @GetMapping()
+    public List<Script> getAllScripts() {return scriptService.get();}
+
+    @PostMapping()
     public void saveScript(@RequestBody Script script) {
         scriptService.save(script);
     } //requestparam->requestbody
 
-    @PutMapping("/scripts")
+    @PutMapping()
     public void updateScript(@RequestParam int id, String body) {scriptService.update(id, body);}
 
-    @DeleteMapping ("/scripts")
+    @DeleteMapping ()
     public void deleteScript(@RequestParam int id) {scriptService.delete(id);};
 }
