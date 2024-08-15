@@ -14,7 +14,7 @@
     <name>kafka-test</name>
     <description>kafka-test</description>
     <properties>
-        <java.version>20</java.version>
+        <java.version>22</java.version>
     </properties>
     <dependencies>
         <dependency>

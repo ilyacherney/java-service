@@ -25,7 +25,7 @@ public class ScriptController {
     @PostMapping()
     public void saveScript(@RequestBody Script script) {
         scriptService.save(script);
-    } //requestparam->requestbody
+    }
 
     @PutMapping()
     public void updateScript(@RequestParam int id, String body) {scriptService.update(id, body);}

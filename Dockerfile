@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM openjdk:20
+FROM openjdk:22
 
 # Set the working directory in the container
 WORKDIR /app
