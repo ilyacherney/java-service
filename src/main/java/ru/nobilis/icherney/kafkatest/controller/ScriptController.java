@@ -17,7 +17,7 @@ public class ScriptController {
     public ScriptController(ScriptService scriptService) {this.scriptService = scriptService;}
 
     @GetMapping("/{id}")
-    public Script getScript(@RequestParam int id) {return scriptService.getById(id);}
+    public Script getScript(@PathVariable int id) {return scriptService.getById(id);}
 
     @GetMapping()
     public List<Script> getAllScripts() {return scriptService.get();}

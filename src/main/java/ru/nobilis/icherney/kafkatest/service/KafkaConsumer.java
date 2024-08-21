@@ -19,10 +19,12 @@ public class KafkaConsumer {
     @Autowired
     public KafkaConsumer(ScriptService scriptService) {this.scriptService = scriptService;}
 
+    //todo eval w/ python
     @KafkaListener (topics = "testtopic", groupId = "test_group")
     public void listen(String msg) {
         System.out.println("Received: " + msg);
-
-
+        Script script = scriptService.getById(1);
+        System.out.println("body: " + script.getBody());
+//        System.out.println(script.eval(msg));
     }
 }
