@@ -1,6 +1,7 @@
 package ru.nobilis.icherney.kafkatest.model;
 
 import jakarta.persistence.*;
+import org.python.util.PythonInterpreter;
 
 @Entity(name = "Script")
 @Table(name =  "scripts")
@@ -38,6 +39,8 @@ public class Script {
     }
 
     public String eval(String s) {
+        PythonInterpreter pythonInterpreter = new PythonInterpreter();
+        pythonInterpreter.
         return s + " evaluated.";
     }
 
