@@ -19,7 +19,7 @@ public class KafkaConsumer {
     @Autowired
     public KafkaConsumer(ScriptService scriptService) {this.scriptService = scriptService;}
 
-    @KafkaListener (topics = "testtopic2", groupId = "test_group")
+    @KafkaListener (topics = "testtopic", groupId = "test_group")
     public void listen(String msg) {
         System.out.println("Received: " + msg);
 

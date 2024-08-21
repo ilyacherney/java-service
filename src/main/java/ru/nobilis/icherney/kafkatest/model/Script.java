@@ -37,6 +37,10 @@ public class Script {
         this.body = body;
     }
 
+    public String eval(String s) {
+        return s + " evaluated.";
+    }
+
     public Script(){};
     public Script(int id, String name, String body){
         this.id = id;
