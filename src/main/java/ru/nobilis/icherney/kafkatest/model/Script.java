@@ -1,6 +1,7 @@
 package ru.nobilis.icherney.kafkatest.model;
 
 import jakarta.persistence.*;
+import org.python.core.PyInteger;
 import org.python.util.PythonInterpreter;
 
 @Entity(name = "Script")
@@ -38,10 +39,13 @@ public class Script {
         this.body = body;
     }
 
-    public String eval(String s) {
+    public int run(int arg1, int arg2) {
         PythonInterpreter pythonInterpreter = new PythonInterpreter();
-        pythonInterpreter.
-        return s + " evaluated.";
+        pythonInterpreter.set("arg1", new PyInteger(arg1));
+        pythonInterpreter.set("arg2", new PyInteger(arg2));
+        pythonInterpreter.exec("result = arg1 + arg2");
+        PyInteger result = (PyInteger)pythonInterpreter.get("result");
+        return result.asInt();
     }
 
     public Script(){};
