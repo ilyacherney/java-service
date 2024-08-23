@@ -43,8 +43,9 @@ public class Script {
         PythonInterpreter pythonInterpreter = new PythonInterpreter();
         pythonInterpreter.set("arg1", new PyInteger(arg1));
         pythonInterpreter.set("arg2", new PyInteger(arg2));
-        pythonInterpreter.exec("result = arg1 + arg2");
+        pythonInterpreter.exec(body);
         PyInteger result = (PyInteger)pythonInterpreter.get("result");
+        System.out.println("result: " + result.asInt());
         return result.asInt();
     }
 

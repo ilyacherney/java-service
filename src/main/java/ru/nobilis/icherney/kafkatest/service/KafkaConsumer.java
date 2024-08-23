@@ -1,31 +1,31 @@
 package ru.nobilis.icherney.kafkatest.service;
 
-import org.python.core.PyFunction;
-import org.python.core.PyInteger;
-import org.python.util.PythonInterpreter;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.nobilis.icherney.kafkatest.model.Message;
+import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
+import ru.nobilis.icherney.kafkatest.model.CalculationResponse;
 import ru.nobilis.icherney.kafkatest.model.Script;
-
-import java.io.*;
-import java.util.Properties;
 
 @Service
 public class KafkaConsumer {
 
-    private ScriptService scriptService;
-
     @Autowired
-    public KafkaConsumer(ScriptService scriptService) {this.scriptService = scriptService;}
+    private KafkaTemplate<String, String> kafkaTemplate;
+    @Autowired
+    private Gson gson;
+    @Autowired
+    ScriptService scriptService;
 
-    //todo eval w/ python
-    @KafkaListener (topics = "testtopic", groupId = "test_group")
-    public void listen(String msg) {
-        System.out.println("Received: " + msg);
-//        Script script = scriptService.getById(1);
-//        System.out.println("body: " + script.getBody());
-//        System.out.println(script.eval(msg));
+    @KafkaListener (topics = "calculation-request", groupId = "group-1")
+    public void listen(String calculationRequest) {
+        System.out.println("KafkaListener: " + calculationRequest);
+        Script script = scriptService.getById(1); //todo remove hardcode
+        CalculationRequest deserializerdCalculationRequest = gson.fromJson(calculationRequest, CalculationRequest.class);
+        int result = script.run(deserializerdCalculationRequest.getArg1(), deserializerdCalculationRequest.getArg2());
+        CalculationResponse calculationResponse = new CalculationResponse(result);
+        System.out.println(calculationResponse);
     }
 }
