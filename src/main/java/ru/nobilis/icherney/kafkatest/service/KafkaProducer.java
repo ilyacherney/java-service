@@ -1,27 +1,27 @@
 package ru.nobilis.icherney.kafkatest.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
-
-import java.util.Arrays;
 
 @Service
 public class KafkaProducer {
 
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
-    @Autowired
-    private ObjectMapper objectMapper;
+    private KafkaTemplate<String, CalculationRequest> kafkaTemplate;
 
+    public KafkaProducer(KafkaTemplate<String, CalculationRequest> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
-    public void sendCalculationRequest(CalculationRequest calculationRequest) throws JsonProcessingException {
-        String jsonString = objectMapper.writeValueAsString(calculationRequest);
-        kafkaTemplate.send("calculation-request", jsonString);
+    public void sendMessage(CalculationRequest data) {
+        System.out.println("KafkaProducer.sendMessage: " + data);
+        Message<CalculationRequest> message = MessageBuilder
+                .withPayload(data)
+                        .setHeader(KafkaHeaders.TOPIC, "calculation-request")
+                                .build();
+        kafkaTemplate.send(message);
     }
 }

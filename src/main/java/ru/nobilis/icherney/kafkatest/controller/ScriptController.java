@@ -43,6 +43,6 @@ public class ScriptController {
 
     @PostMapping("/{id}/execute")
     public void executeScript(@RequestBody CalculationRequest calculationRequest) throws JsonProcessingException {
-        kafkaProducer.sendCalculationRequest(calculationRequest);
+        kafkaProducer.sendMessage(calculationRequest);
     }
 }

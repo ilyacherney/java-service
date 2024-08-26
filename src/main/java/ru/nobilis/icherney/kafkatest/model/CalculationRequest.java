@@ -9,4 +9,13 @@ public class CalculationRequest {
     private int arg1;
     @Getter
     private int arg2;
+
+    @Override
+    public String toString() {
+        return "CalculationRequest{" +
+                "name='" + name + '\'' +
+                ", arg1=" + arg1 +
+                ", arg2=" + arg2 +
+                '}';
+    }
 }
