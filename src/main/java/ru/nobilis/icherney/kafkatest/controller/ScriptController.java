@@ -1,5 +1,6 @@
 package ru.nobilis.icherney.kafkatest.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,7 @@ public class ScriptController {
     public void deleteScript(@RequestParam int id) {scriptService.delete(id);};
 
     @PostMapping("/{id}/execute")
-    public void executeScript(@RequestBody CalculationRequest calculationRequest) {
+    public void executeScript(@RequestBody CalculationRequest calculationRequest) throws JsonProcessingException {
         kafkaProducer.sendCalculationRequest(calculationRequest);
     }
 }
