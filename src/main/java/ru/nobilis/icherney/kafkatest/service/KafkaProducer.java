@@ -24,8 +24,4 @@ public class KafkaProducer {
         String jsonString = objectMapper.writeValueAsString(calculationRequest);
         kafkaTemplate.send("calculation-request", jsonString);
     }
-
-    public void sendCalculationResponse(CalculationRequest calculationRequest) {
-//        kafkaTemplate.send("calculation-request", gson.toJson(calculationRequest));
-    }
 }

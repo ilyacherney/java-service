@@ -1,13 +1,9 @@
 package ru.nobilis.icherney.kafkatest.service;
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
-import ru.nobilis.icherney.kafkatest.model.CalculationResponse;
 import ru.nobilis.icherney.kafkatest.model.Script;
 
 @Service
