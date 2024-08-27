@@ -23,8 +23,6 @@ public class ScriptService  {
 
     public Script getById(int id) {
         Optional<Script> script = scriptRepository.findById(id);
-
-        //add exception
         return script.orElse(null);
     }
 
