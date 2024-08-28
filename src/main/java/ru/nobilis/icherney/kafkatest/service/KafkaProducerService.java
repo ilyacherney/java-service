@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
 
 @Service
-public class KafkaProducer {
+public class KafkaProducerService {
 
     private KafkaTemplate<String, CalculationRequest> kafkaTemplate;
 
-    public KafkaProducer(KafkaTemplate<String, CalculationRequest> kafkaTemplate) {
+    public KafkaProducerService(KafkaTemplate<String, CalculationRequest> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(CalculationRequest data) {
+    public void sendMessage(CalculationRequest data, String topic) {
         System.out.println("KafkaProducer.sendMessage: " + data);
         Message<CalculationRequest> message = MessageBuilder
                 .withPayload(data)
-                        .setHeader(KafkaHeaders.TOPIC, "calculation-request")
+                        .setHeader(KafkaHeaders.TOPIC, topic)
                                 .build();
         kafkaTemplate.send(message);
     }
