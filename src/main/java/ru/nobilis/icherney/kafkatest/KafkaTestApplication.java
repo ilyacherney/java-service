@@ -8,6 +8,5 @@ import org.springframework.kafka.core.KafkaTemplate;
 public class KafkaTestApplication {
     public static void main(String[] args) {
         SpringApplication.run(KafkaTestApplication.class, args);
-
     }
 }

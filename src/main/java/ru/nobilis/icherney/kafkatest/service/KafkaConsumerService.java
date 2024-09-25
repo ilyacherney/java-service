@@ -8,8 +8,10 @@ import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
 import ru.nobilis.icherney.kafkatest.model.Script;
 
 @Service
-public class KafkaConsumer {
+public class KafkaConsumerService {
 
+    @Autowired
+    CalculationService calculationService;
     @Autowired
     ScriptService scriptService;
     @Autowired
@@ -17,11 +19,7 @@ public class KafkaConsumer {
 
     @KafkaListener (topics = "calculation-request", groupId = "group-1")
     public void listen(CalculationRequest calculationRequest) {
-        System.out.println("KafkaConsumer.listen: " + calculationRequest);
-        System.out.println("calculationRequest.getArg1: " + calculationRequest.getArg1());
-
-        Script script = scriptService.getById(1); //todo: getByName
-        int result = script.run(calculationRequest.getArg1(), calculationRequest.getArg2());
-        System.out.println("Result: " + result);
+        Script script = scriptService.getById(calculationRequest.getId());
+        
     }
 }

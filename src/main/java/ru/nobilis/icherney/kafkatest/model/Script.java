@@ -39,15 +39,6 @@ public class Script {
         this.body = body;
     }
 
-    public int run(int arg1, int arg2) {
-        PythonInterpreter pythonInterpreter = new PythonInterpreter();
-        pythonInterpreter.set("arg1", new PyInteger(arg1));
-        pythonInterpreter.set("arg2", new PyInteger(arg2));
-        pythonInterpreter.exec(body);
-        PyInteger result = (PyInteger)pythonInterpreter.get("result");
-        System.out.println("result: " + result.asInt());
-        return result.asInt();
-    }
 
     public Script(){};
     public Script(int id, String name, String body){

@@ -1,12 +1,11 @@
 package ru.nobilis.icherney.kafkatest.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
 import ru.nobilis.icherney.kafkatest.model.Script;
-import ru.nobilis.icherney.kafkatest.service.KafkaProducer;
+import ru.nobilis.icherney.kafkatest.service.KafkaProducerService;
 import ru.nobilis.icherney.kafkatest.service.ScriptService;
 
 import java.util.List;
@@ -17,9 +16,7 @@ public class ScriptController {
 
     private ScriptService scriptService;
     @Autowired
-    Gson gson;
-    @Autowired
-    private KafkaProducer kafkaProducer;
+    private KafkaProducerService kafkaProducerService;
 
     @Autowired
     public ScriptController(ScriptService scriptService) {this.scriptService = scriptService;}
@@ -28,7 +25,7 @@ public class ScriptController {
     public Script getScript(@PathVariable int id) {return scriptService.getById(id);}
 
     @GetMapping()
-    public List<Script> getAllScripts() {return scriptService.get();}
+    public List<Script> getScripts() {return scriptService.get();}
 
     @PostMapping()
     public void saveScript(@RequestBody Script script) {
@@ -41,8 +38,5 @@ public class ScriptController {
     @DeleteMapping ()
     public void deleteScript(@RequestParam int id) {scriptService.delete(id);};
 
-    @PostMapping("/{id}/execute")
-    public void executeScript(@RequestBody CalculationRequest calculationRequest) throws JsonProcessingException {
-        kafkaProducer.sendMessage(calculationRequest);
-    }
+
 }

@@ -11,8 +11,8 @@
     <groupId>ru.nobilis.icherney</groupId>
     <artifactId>kafka-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>kafka-test</name>
-    <description>kafka-test</description>
+    <name>calc-service</name>
+    <description>calc-service</description>
     <properties>
         <java.version>22</java.version>
     </properties>
