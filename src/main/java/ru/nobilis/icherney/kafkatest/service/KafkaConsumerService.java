@@ -10,16 +10,15 @@ import ru.nobilis.icherney.kafkatest.model.Script;
 @Service
 public class KafkaConsumerService {
 
+    private final ScriptService scriptService;
+
     @Autowired
-    CalculationService calculationService;
-    @Autowired
-    ScriptService scriptService;
-    @Autowired
-    private KafkaTemplate<String, String> kafkaTemplate;
+    public KafkaConsumerService (CalculationService calculationService, ScriptService scriptService, KafkaTemplate<String, String> kafkaTemplate){
+        this.scriptService = scriptService;
+    }
 
     @KafkaListener (topics = "calculation-request", groupId = "group-1")
     public void listen(CalculationRequest calculationRequest) {
         Script script = scriptService.getById(calculationRequest.getId());
-        
     }
 }
