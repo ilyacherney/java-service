@@ -1,11 +1,8 @@
 package ru.nobilis.icherney.kafkatest.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
 import ru.nobilis.icherney.kafkatest.model.Script;
-import ru.nobilis.icherney.kafkatest.service.KafkaProducerService;
 import ru.nobilis.icherney.kafkatest.service.ScriptService;
 
 import java.util.List;

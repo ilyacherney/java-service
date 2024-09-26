@@ -37,6 +37,6 @@ public class ScriptService  {
 
     public void delete(int id) {
         Optional<Script> script = scriptRepository.findById(id);
-        scriptRepository.delete(script.get());
+        scriptRepository.deleteById(id);
     }
 }

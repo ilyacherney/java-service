@@ -6,7 +6,7 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: group-1
+      group-id: calculation-service
       auto-offset-reset: earliest
       key-deserialize: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

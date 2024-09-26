@@ -2,23 +2,21 @@ package ru.nobilis.icherney.kafkatest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import ru.nobilis.icherney.kafkatest.model.CalculationRequest;
-import ru.nobilis.icherney.kafkatest.model.Script;
 
 @Service
 public class KafkaConsumerService {
 
-    private final ScriptService scriptService;
+    CalculationHandlerService calculationHandlerService;
 
     @Autowired
-    public KafkaConsumerService (ScriptService scriptService){
-        this.scriptService = scriptService;
+    public KafkaConsumerService (CalculationHandlerService calculationHandlerService){
+        this.calculationHandlerService = calculationHandlerService;
     }
 
-    @KafkaListener (topics = "calculation-request", groupId = "group-1")
-    public void listen(CalculationRequest calculationRequest) {
-        Script script = scriptService.getById(calculationRequest.getId());
+    @KafkaListener(topics = "calculation-requests", groupId = "calculation-service")
+    public void consume(CalculationRequest calculationRequest) {
+        calculationHandlerService.handeCalculationRequest(calculationRequest);
     }
 }

@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.nobilis.icherney</groupId>
-    <artifactId>kafka-test</artifactId>
+    <artifactId>calc-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>calc-service</name>
     <description>calc-service</description>

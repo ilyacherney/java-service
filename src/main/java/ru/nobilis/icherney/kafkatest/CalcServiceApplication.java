@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.core.KafkaTemplate;
 
 @SpringBootApplication
-public class KafkaTestApplication {
+public class CalcServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(KafkaTestApplication.class, args);
+        SpringApplication.run(CalcServiceApplication.class, args);
     }
 }
