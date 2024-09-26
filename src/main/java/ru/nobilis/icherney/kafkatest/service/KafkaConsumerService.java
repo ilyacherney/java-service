@@ -13,7 +13,7 @@ public class KafkaConsumerService {
     private final ScriptService scriptService;
 
     @Autowired
-    public KafkaConsumerService (CalculationService calculationService, ScriptService scriptService, KafkaTemplate<String, String> kafkaTemplate){
+    public KafkaConsumerService (ScriptService scriptService){
         this.scriptService = scriptService;
     }
 
