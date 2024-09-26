@@ -11,25 +11,25 @@ import java.util.List;
 @RequestMapping("/api/script")
 public class ScriptController {
 
-    private ScriptService scriptService;
+    private final ScriptService scriptService;
 
     @Autowired
-    public ScriptController(ScriptService scriptService) {this.scriptService = scriptService;}
+    public ScriptController(ScriptService scriptService) { this.scriptService = scriptService; }
 
     @GetMapping("/{id}")
-    public Script getScript(@RequestParam int id) {return scriptService.getById(id);}
+    public Script getScript(@PathVariable int id) { return scriptService.getById(id); }
 
     @GetMapping()
-    public List<Script> getAllScripts() {return scriptService.get();}
+    public List<Script> getScripts() { return scriptService.get(); }
 
     @PostMapping()
-    public void saveScript(@RequestBody Script script) {
-        scriptService.save(script);
-    } //requestparam->requestbody
+    public void saveScript(@RequestBody Script script) { scriptService.save(script); }
 
     @PutMapping()
-    public void updateScript(@RequestParam int id, String body) {scriptService.update(id, body);}
+    public void updateScript(@RequestParam int id, String body) { scriptService.update(id, body); }
 
     @DeleteMapping ()
-    public void deleteScript(@RequestParam int id) {scriptService.delete(id);};
+    public void deleteScript(@RequestParam int id) { scriptService.delete(id); }
+
+
 }

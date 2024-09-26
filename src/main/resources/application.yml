@@ -1,6 +1,20 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: calculation-service
+      auto-offset-reset: earliest
+      key-deserialize: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+          spring:
+              json:
+                  trusted:
+                      packages: '*'
   datasource:
     url: jdbc:postgresql://localhost:5432/new_db
     username: postgres
